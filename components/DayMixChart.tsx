@@ -12,11 +12,8 @@ function formatDate(iso: string): string {
   });
 }
 
-const FULL_DAY_INTERVALS = 48;
-
 export default function DayMixChart({ day }: { day: DailyMix }) {
   const hasData = day.generationMix.length > 0;
-  const isPartial = day.intervalCount > 0 && day.intervalCount < FULL_DAY_INTERVALS;
 
   return (
     <div className="flex flex-col items-center rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
@@ -27,15 +24,6 @@ export default function DayMixChart({ day }: { day: DailyMix }) {
         {day.cleanEnergyPercentage.toFixed(2)}%
         <span className="ml-1 text-sm font-normal text-zinc-500">czystej energii</span>
       </p>
-      {isPartial && (
-        <p
-          className="mb-2 rounded-full bg-amber-100 px-2 py-0.5 text-xs text-amber-700 dark:bg-amber-900/40 dark:text-amber-300"
-          title="Prognoza nie pokrywa jeszcze calej doby"
-        >
-          dane częściowe ({day.intervalCount}/{FULL_DAY_INTERVALS})
-        </p>
-      )}
-
       {hasData ? (
         <ResponsiveContainer width="100%" height={240}>
           <PieChart>

@@ -7,7 +7,6 @@ export interface DailyMix {
   date: string;
   generationMix: FuelShare[];
   cleanEnergyPercentage: number;
-  intervalCount: number; //
 }
 
 export interface ChargingWindow {
